@@ -17,15 +17,26 @@ class AddReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        titleTextField.delegate = self
+        bodyTextField.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSave))
     }
     
-    @IBAction func didTapSave() {
+    @objc func didTapSave() {
         if let titleText = titleTextField.text, !titleText.isEmpty,
            let bodyText  = bodyTextField.text, !bodyText.isEmpty {
             let targetDate = datePicker.date
+            
+            completion?(titleText, bodyText, targetDate)
         }
     }
     
+}
 
+
+extension AddReminderViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
