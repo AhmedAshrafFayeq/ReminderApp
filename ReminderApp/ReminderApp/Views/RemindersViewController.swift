@@ -1,13 +1,14 @@
 //
-//  ViewController.swift
+//  RemindersViewController.swift
 //  ReminderApp
 //
 //  Created by Ahmed Fayeq on 28/08/2022.
 //
 
 import UIKit
+import NotificationCenter
 
-class ViewController: UIViewController {
+class RemindersViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     var reminders = [Reminder]()
@@ -17,11 +18,19 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    @IBAction func didTapAdd () {
+        //show AddVC
+    }
+    
+    @IBAction func didTapTest() {
+        // fire test notification
+    }
 
 }
 
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension RemindersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
